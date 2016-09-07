@@ -554,3 +554,7 @@ Output:
 	Country Id: 4|| Country name: China
 	Country Id: 1|| Country name: India
 	Country Id: 3|| Country name: Nepal
+
+
+
+或者可以参考[http://my.oschina.net/itblog/blog/221468](http://my.oschina.net/itblog/blog/221468)
