@@ -7,13 +7,13 @@
 
 3.0.0版本中PasswordEncoder继承关系
 
-[](https://github.com/silence940109/Java/blob/master/image/Security3.0.jpg)
+![](https://github.com/silence940109/Java/blob/master/image/Security3.0.jpg "Spring Security 3.0")
 
 在3.1.0及之后的版本，增加了crypto包/模块，提供了更加强大的对称加密，生成key，以及密码加密功能。这个模块是作为core的一部分存在的，但是对其它任何Spring Security或Spring代码没有依赖，也可以单独作为一个包存在！ 
 
 3.1.0版本中新的PasswordEncoder继承关系 
 
-[](https://github.com/silence940109/Java/blob/master/image/Security3.1.jpg)
+![](https://github.com/silence940109/Java/blob/master/image/Security3.1.jpg "Spring Security 3.1")
 
 在3.1.0以前的版本中，PasswordEncoder位于 
 org.springframeword.security.authentication.encoding包中，接口定义如下： 
