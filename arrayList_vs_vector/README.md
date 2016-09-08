@@ -1,4 +1,6 @@
-####ArrayList And Vector
+###ArrayList And Vector
+List,就如图名字所示一样,是元素的有序列表。当我们讨论List时，将其与Set作对比是一个很好的办法,Set集合中的元素是无序且唯一的。
+
 List接口下一共实现了三个类：ArrayList，Vector，LinkedList。LinkedList就不多说了，它一般主要用在保持数据的插入顺序的时候。ArrayList和Vector都是用数组实现的，主要有这么三个区别：
 
 1、Vector是多线程安全的，而ArrayList不是，这个可以从源码中看出，Vector类中的方法很多有synchronized进行修饰，这样就导致了Vector在效率上无法与ArrayList相比；
@@ -124,5 +126,28 @@ Vector类：
 
 ArrayList和Vector都是使用数组方式存储数据，此数组元素数大于实际存储的数据以便增加和插入元素，它们都允许直接按序号索引元素，但是插入元素要涉及数组元素移动等内存操作，所以索引数据快而插入数据慢，Vector由于使用了synchronized方法(线程安全)，通常性能上较ArrayList差。
 
+###关于LinkedList
+LinkedList 是一个双链表,在添加和删除元素时具有比ArrayList更好的性能.但在get与set方面弱于ArrayList.当然,这些对比都是指数据量很大或者操作很频繁的情况下的对比,如果数据和运算量很小,那么对比将失去意义.
 
+而 LinkedList 还实现了 Queue 接口,该接口比List提供了更多的方法,包括 offer(),peek(),poll()等.注意: 默认情况下ArrayList的初始容量非常小,所以如果可以预估数据量的话,分配一个较大的初始值属于最佳实践,这样可以减少调整大小的开销。
+
+###什么时候使用ArrayList或Vector
+在什么时候使用ArrayList或Vector，它完全取决于你的需求，如果你需要执行一个线程安全的操作，那么Vector是最好的选择，它保证你同一个时刻只有一个线程访问你的集合。
+
+性能：同步操作相比没有同步操作消耗更多的时间，所以如果你不需要线程安全的操作，ArrayList将会是更好的选择，它将会因为并发进程提高性能。
+
+####怎么让ArrayList同步
+使用Collecions.synzhonizedList
+
+	List list = Collections.synchronizedList(new ArrayList());
+	...	
+	//If you wanna use iterator on the synchronized list, use it
+	//like this. It should be in synchronized block.
+	synchronized (list) {
+	  Iterator iterator = list.iterator();
+	  while (iterator.hasNext())
+	      ...
+	      iterator.next();
+	      ...
+	}
 
