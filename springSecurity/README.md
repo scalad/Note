@@ -47,6 +47,15 @@ StandardPasswordEncoder类，是PasswordEncoder接口的(唯一)一个实现类�
 
 简单封装一下：
 
+如果你使用的maven，可以加入依赖
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>4.1.3.RELEASE</version>
+		</dependency>
+
 #		
 	import org.springframework.security.crypto.password.PasswordEncoder;
 	import org.springframework.security.crypto.password.StandardPasswordEncoder;
