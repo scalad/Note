@@ -151,3 +151,6 @@ LinkedList 是一个双链表,在添加和删除元素时具有比ArrayList更�
 	      ...
 	}
 
+
+#### ArrayList,Vector, LinkedList的存储性能和特性
+ArrayList 和 Vector 都是使用数组方式存储数据，此数组元素数大于实际存储的数据以便增加和插入元素， 它们都允许直接按序号索引元素，但是插入元素要涉及数组元素移动等内存操作，所以索引数据快而插入数据慢，Vector 由于使用了 synchronized 方法（线程安全） ，通常性能上较 ArrayList 差，而 LinkedList 使用双向链表实现存储，按序号索引数据需要进行前向或后向遍历， 但是插入数据时只需要记录本项的前后项即可，所以插入速度较快。LinkedList 也是线程不安全的，LinkedList 提供了一些方法，使得LinkedList 可以被当作堆栈和队列来使用。
