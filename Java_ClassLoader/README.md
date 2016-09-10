@@ -127,3 +127,182 @@ java.lang.ClassLoader类的基本职责就是根据一个指定的类的名称�
 
 Java 中的类加载器大致可以分成两类，一类是系统提供的，另外一类则是由 Java 应用开发人员编写的。系统提供的类加载器主要有下面三个：
 
+* 引导类加载器（bootstrap class loader）：它用来加载 Java 的核心库，是用原生代码来实现的，并不继承自 java.lang.ClassLoader。
+
+* 扩展类加载器（extensions class loader）：它用来加载 Java 的扩展库。Java 虚拟机的实现会提供一个扩展库目录。该类加载器在此目录里面查找并加载 Java 类。
+
+* 系统类加载器（system class loader）：它根据 Java 应用的类路径（CLASSPATH）来加载 Java 类。一般来说，Java 应用的类都是由它来完成加载的。可以通过 ClassLoader.getSystemClassLoader()来获取它。
+ 
+除了系统提供的类加载器以外，开发人员可以通过继承 java.lang.ClassLoader类的方式实现自己的类加载器，以满足一些特殊的需求。
+
+除了引导类加载器之外，所有的类加载器都有一个父类加载器。通过 表 1中给出的 getParent()方法可以得到。对于系统提供的类加载器来说，系统类加载器的父类加载器是扩展类加载器，而扩展类加载器的父类加载器是引导类加载器；对于开发人员编写的类加载器来说，其父类加载器是加载此类加载器 Java 类的类加载器。因为类加载器 Java 类如同其它的 Java 类一样，也是要由类加载器来加载的。一般来说，开发人员编写的类加载器的父类加载器是系统类加载器。类加载器通过这种方式组织起来，形成树状结构。树的根节点就是引导类加载器。图 1中给出了一个典型的类加载器树状组织结构示意图，其中的箭头指向的是父类加载器。
+
+类加载器树状组织结构示意图
+
+![](https://github.com/silence940109/Java/blob/master/image/clasloader.jpg)
+
+演示类加载器的树状组织结构
+
+	public class ClassLoaderTree {   
+	    public static void main(String[] args) {   
+	        ClassLoader loader = ClassLoaderTree.class.getClassLoader();   
+	        while (loader != null) {   
+	            System.out.println(loader.toString());   
+	            loader = loader.getParent();   
+	        }   
+	    }   
+	 }  
+
+每个 Java 类都维护着一个指向定义它的类加载器的引用，通过 getClassLoader()方法就可以获取到此引用。代码清单 1中通过递归调用getParent()方法来输出全部的父类加载器。代码清单 1的运行结果如 代码清单 2所示。
+
+演示类加载器的树状组织结构的运行结果
+
+	sun.misc.Launcher$AppClassLoader@9304b1   
+	sun.misc.Launcher$ExtClassLoader@190d11  
+
+如 代码清单所示，第一个输出的是 ClassLoaderTree类的类加载器，即系统类加载器。它是 sun.misc.Launcher$AppClassLoader类的实例；第二个输出的是扩展类加载器，是 sun.misc.Launcher$ExtClassLoader类的实例。需要注意的是这里并没有输出引导类加载器，这是由于有些 JDK 的实现对于父类加载器是引导类加载器的情况，getParent()方法返回 null。
+
+在了解了类加载器的树状组织结构之后，下面介绍类加载器的代理模式。
+
+**类加载器的代理模式**
+
+类加载器在尝试自己去查找某个类的字节代码并定义它时，会先代理给其父类加载器，由父类加载器先去尝试加载这个类，依次类推。在介绍代理模式背后的动机之前，首先需要说明一下 Java 虚拟机是如何判定两个 Java 类是相同的。Java 虚拟机不仅要看类的全名是否相同，还要看加载此类的类加载器是否一样。只有两者都相同的情况，才认为两个类是相同的。即便是同样的字节代码，被不同的类加载器加载之后所得到的类，也是不同的。比如一个 Java 类 com.example.Sample，编译之后生成了字节代码文件 Sample.class。两个不同的类加载器ClassLoaderA和 ClassLoaderB分别读取了这个 Sample.class文件，并定义出两个 java.lang.Class类的实例来表示这个类。这两个实例是不相同的。对于 Java 虚拟机来说，它们是不同的类。试图对这两个类的对象进行相互赋值，会抛出运行时异常ClassCastException。下面通过示例来具体说明。代码清单 3中给出了 Java 类 com.example.Sample。
+
+Sample 类
+
+	public class Sample {   
+	   private Sample instance;   
+	  
+	   public void setSample(Object instance) {   
+	       this.instance = (Sample) instance;   
+	   }   
+	}
+
+Sample类的方法 setSample接受一个 java.lang.Object类型的参数，并且会把该参数强制转换成Sample类型。测试 Java 类是否相同的代码如所示。
+
+测试 Java 类是否相同
+	
+	public void testClassIdentity() {   
+	    String classDataRootPath = "C:\\workspace\\Classloader\\classData";   
+	    FileSystemClassLoader fscl1 = new FileSystemClassLoader(classDataRootPath);   
+	    FileSystemClassLoader fscl2 = new FileSystemClassLoader(classDataRootPath);   
+	    String className = "com.example.Sample";      
+	    try {   
+	        Class<?> class1 = fscl1.loadClass(className);   
+	        Object obj1 = class1.newInstance();   
+	        Class<?> class2 = fscl2.loadClass(className);   
+	        Object obj2 = class2.newInstance();   
+	        Method setSampleMethod = class1.getMethod("setSample", java.lang.Object.class);   
+	        setSampleMethod.invoke(obj1, obj2);   
+	    } catch (Exception e) {   
+	        e.printStackTrace();   
+	    }   
+    } 
+
+代码清单 4中使用了类 FileSystemClassLoader的两个不同实例来分别加载类 Sample，得到了两个不同的java.lang.Class的实例，接着通过 newInstance()方法分别生成了两个类的对象 obj1和 obj2，最后通过 Java 的反射 API 在对象 obj1上调用方法 setSample，试图把对象 obj2赋值给 obj1内部的 instance对象。代码清单 4的运行结果如 代码清单 5所示。
+
+测试 Java 类是否相同的运行结果
+
+	package com.example;   
+	  
+	public class Sample {   
+	   private Sample instance;   
+	  
+	   public void setSample(Object instance) {   
+	       this.instance = (Sample) instance;   
+	   }   
+	}  
+
+如 代码清单 3所示，com.example.Sample类的方法 setSample接受一个 java.lang.Object类型的参数，并且会把该参数强制转换成com.example.Sample类型。测试 Java 类是否相同的代码如 代码清单 4所示。
+
+测试 Java 类是否相同
+
+	public void testClassIdentity() {   
+	    String classDataRootPath = "C:\\workspace\\Classloader\\classData";   
+	    FileSystemClassLoader fscl1 = new FileSystemClassLoader(classDataRootPath);   
+	    FileSystemClassLoader fscl2 = new FileSystemClassLoader(classDataRootPath);   
+	    String className = "com.example.Sample";      
+	    try {   
+	        Class<?> class1 = fscl1.loadClass(className);   
+	        Object obj1 = class1.newInstance();   
+	        Class<?> class2 = fscl2.loadClass(className);   
+	        Object obj2 = class2.newInstance();   
+	        Method setSampleMethod = class1.getMethod("setSample", java.lang.Object.class);   
+	        setSampleMethod.invoke(obj1, obj2);   
+	    } catch (Exception e) {   
+	        e.printStackTrace();   
+	    }   
+	 }  
+
+代码清单 4中使用了类 FileSystemClassLoader的两个不同实例来分别加载类com.example.Sample，得到了两个不同的java.lang.Class的实例，接着通过 newInstance()方法分别生成了两个类的对象 obj1和 obj2，最后通过 Java 的反射 API 在对象 obj1上调用方法 setSample，试图把对象 obj2赋值给 obj1内部的 instance对象。代码清单 4的运行结果如 代码清单 5所示。
+
+测试 Java 类是否相同的运行结果
+
+	java.lang.reflect.InvocationTargetException   
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)   
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)   
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)  
+	at java.lang.reflect.Method.invoke(Method.java:597)   
+	at classloader.ClassIdentity.testClassIdentity(ClassIdentity.java:26)   
+	at classloader.ClassIdentity.main(ClassIdentity.java:9)   
+	Caused by: java.lang.ClassCastException: com.example.Sample   
+	cannot be cast to com.example.Sample   
+	at com.example.Sample.setSample(Sample.java:7)   
+	... 6 more  
+
+从 代码清单 5给出的运行结果可以看到，运行时抛出了 java.lang.ClassCastException异常。虽然两个对象 obj1和 obj2的类的名字相同，但是这两个类是由不同的类加载器实例来加载的，因此不被 Java 虚拟机认为是相同的。
+
+了解了这一点之后，就可以理解代理模式的设计动机了。代理模式是为了保证 Java 核心库的类型安全。所有 Java 应用都至少需要引用java.lang.Object类，也就是说在运行的时候，java.lang.Object这个类需要被加载到 Java 虚拟机中。如果这个加载过程由 Java 应用自己的类加载器来完成的话，很可能就存在多个版本的 java.lang.Object类，而且这些类之间是不兼容的。通过代理模式，对于 Java 核心库的类的加载工作由引导类加载器来统一完成，保证了 Java 应用所使用的都是同一个版本的 Java 核心库的类，是互相兼容的。
+
+不同的类加载器为相同名称的类创建了额外的名称空间。相同名称的类可以并存在 Java 虚拟机中，只需要用不同的类加载器来加载它们即可。不同类加载器加载的类之间是不兼容的，这就相当于在 Java 虚拟机内部创建了一个个相互隔离的 Java 类空间。这种技术在许多框架中都被用到，后面会详细介绍。
+
+**文件系统类加载器**
+
+第一个类加载器用来加载存储在文件系统上的 Java 字节代码。完整的实现如 代码清单 6所示。
+	
+	public class FileSystemClassLoader extends ClassLoader {   
+	  
+	    private String rootDir;   
+	  
+	    public FileSystemClassLoader(String rootDir) {   
+	        this.rootDir = rootDir;   
+	    }   
+	  
+	    protected Class<?> findClass(String name) throws ClassNotFoundException {   
+	        byte[] classData = getClassData(name);   
+	        if (classData == null) {   
+	            throw new ClassNotFoundException();   
+	        }   
+	        else {   
+	            return defineClass(name, classData, 0, classData.length);   
+	        }   
+	    }   
+	  
+	    private byte[] getClassData(String className) {   
+	        String path = classNameToPath(className);   
+	        try {   
+	            InputStream ins = new FileInputStream(path);   
+	            ByteArrayOutputStream baos = new ByteArrayOutputStream();   
+	            int bufferSize = 4096;   
+	            byte[] buffer = new byte[bufferSize];   
+	            int bytesNumRead = 0;   
+	            while ((bytesNumRead = ins.read(buffer)) != -1) {   
+	                baos.write(buffer, 0, bytesNumRead);   
+	            }   
+	            return baos.toByteArray();   
+	        } catch (IOException e) {   
+	            e.printStackTrace();   
+	        }   
+	        return null;   
+	    }   
+	  
+	    private String classNameToPath(String className) {   
+	        return rootDir + File.separatorChar   
+	                + className.replace('.', File.separatorChar) + ".class";   
+	    }   
+	 }  
+
+如 代码清单 6所示，类 FileSystemClassLoader继承自类 java.lang.ClassLoader。在 表 1中列出的 java.lang.ClassLoader类的常用方法中，一般来说，自己开发的类加载器只需要覆写 findClass(String name)方法即可。java.lang.ClassLoader类的方法loadClass()封装了前面提到的代理模式的实现。该方法会首先调用 findLoadedClass()方法来检查该类是否已经被加载过；如果没有加载过的话，会调用父类加载器的 loadClass()方法来尝试加载该类；如果父类加载器无法加载该类的话，就调用 findClass()方法来查找该类。因此，为了保证类加载器都正确实现代理模式，在开发自己的类加载器时，最好不要覆写 loadClass()方法，而是覆写 findClass()方法。
+
+类 FileSystemClassLoader的 findClass()方法首先根据类的全名在硬盘上查找类的字节代码文件（.class 文件），然后读取该文件内容，最后通过 defineClass()方法来把这些字节代码转换成 java.lang.Class类的实例。
+
