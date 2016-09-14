@@ -18,7 +18,7 @@
 			URL url = new URL(source);
 			URLConnection conn = url.openConnection();
 			InputStream inStream = conn.getInputStream();
-			target += "/" + source.split("/")[source.split("/").length - 1];
+			target += "/" + source.substring(source.lastIndexOf("/") + 1);
 			FileOutputStream fs = new FileOutputStream(target);
 
 			byte[] buffer = new byte[1204];
