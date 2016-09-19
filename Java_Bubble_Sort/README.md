@@ -121,4 +121,81 @@ java实现
  
 ![](https://github.com/silence940109/Java/blob/master/image/java_buddle_sort_result1.png)
 
+上面的改进方法，是根据上一轮排序有没有发生数据交换作为标识，进一步思考，如果上一轮排序中，只有后一段的几个元素没有发生数据交换，是不是可以判定这一段不用在进行比较了呢？答案是肯定的。
 
+例如上面的例子中，前四轮的排序结果为：
+
+	未排序时的结果：1   5  4  11 2  20 18
+	第1轮排序结果：1  4  5  2  11 18 20
+	第2轮排序结果：1  4  2  5  11 18 20
+	第3轮排序结果：1  2  4  5  11 18 20
+	第4轮排序结果：1  2  4  5  11 18 20
+
+第1轮排序之后，11、18、20已经是有序的了，后面的几次排序后它们的位置都没有变化，但是根据冒泡算法，18依然会在第2轮参与比较，11依然会在第2轮、第3轮参与比较，其实都是无用功。
+
+我们可以对算法进一步改进：设置一个pos指针，pos后面的数据在上一轮排序中没有发生交换，下一轮排序时，就对pos之后的数据不再比较。
+
+代码改动如下：
+
+	//冒泡排序改进2  
+	public void bubbleSort_improvement_2(){  
+	   int temp;  
+	   int counter = 1;  
+	   int endPoint = array.length-1;  //endPoint代表最后一个需要比较的元素下标  
+	    
+	   while(endPoint>0){   
+	      intpos = 1;  
+	      for(int j=1;j<=endPoint;j++){    
+	          if(array[j-1]>array[j]){  //如果前一位大于后一位，交换位置  
+	             temp= array[j-1];  
+	             array[j-1]= array[j];  
+	             array[j]= temp;  
+	                  
+	             pos= j;  //下标为j的元素与下标为j-1的元素发生了数据交换  
+	          }  
+	      }  
+		  //下一轮排序时只对下标小于pos的元素排序，下标大于等于pos的元素已经排好  
+	      endPoint= pos-1;  
+	       
+	      System.out.print("第"+counter+"轮排序结果：");  
+	      display();  
+	   }  
+	} 
+
+对的算法来说，没有最好，只有更好。上面的两种改进方法其实治标不治本，是一种“扬汤止沸”的改进，下面我们来一次“釜底抽薪”的改进。
+
+传统的冒泡算法每次排序只确定了最大值，我们可以在每次循环之中进行正反两次冒泡，分别找到最大值和最小值，如此可使排序的轮数减少一半。
+
+改进代码如下：
+
+	//冒泡排序改进3  
+	public void bubbleSort_improvement_3(){  
+	   int temp;  
+	   int low = 0;  
+	   int high = array.length-1;  
+	   int counter = 1;  
+	   while(low<high){   
+	       
+	      for(int i=low;i<high;++i){   //正向冒泡，确定最大值  
+	          if(array[i]>array[i+1]){  //如果前一位大于后一位，交换位置  
+	             temp= array[i];  
+	             array[i]= array[i+1];  
+	             array[i+1]= temp;  
+	          }  
+	      }  
+	      --high;  
+	       
+	      for(int j=high;j>low;--j){   //反向冒泡，确定最小值  
+	          if(array[j]<array[j-1]){  //如果前一位大于后一位，交换位置  
+	             temp= array[j];  
+	             array[j]= array[j-1];  
+	             array[j-1]= temp;  
+	          }  
+	      }  
+	      ++low;  
+	       
+	      System.out.print("第"+counter+"轮排序结果：");  
+	      display();  
+	      counter++;  
+	   }  
+	} 
