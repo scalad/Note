@@ -40,5 +40,5 @@
 
 总评
 
-![](https://github.com/silence940109/Java/blob/master/resume/grade/images/10.png)
+![](https://github.com/silence940109/Java/blob/master/resume/grade/images/11.png)
 
