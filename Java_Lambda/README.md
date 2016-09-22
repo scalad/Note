@@ -61,3 +61,49 @@
 
     Object o = (Runnable) () -> { System.out.println("hi"); }; // correct
 
+一个λ表达式只有在转型成一个函数接口后才能被当做Object使用。所以下面这句也不能编译：
+
+    System.out.println( () -> {} ); //错误! 目标类型不明
+
+必须先转型:
+
+    System.out.println( (Runnable)() -> {} ); // 正确
+
+假设你自己写了一个函数接口，长的跟Runnable一模一样：
+
+    @FunctionalInterface
+    public interface MyRunnable {
+        public void run();
+    }
+    
+那么
+
+	Runnable r1 =    () -> {System.out.println("Hello Lambda!");};
+	MyRunnable2 r2 = () -> {System.out.println("Hello Lambda!");};
+
+JDK预定义了很多函数接口以避免用户重复定义。最典型的是Function：
+
+    @FunctionalInterface
+    public interface Function<T, R> {  
+        R apply(T t);
+    }
+
+这个接口代表一个函数，接受一个T类型的参数，并返回一个R类型的返回值。   
+
+另一个预定义函数接口叫做Consumer，跟Function的唯一不同是它没有返回值。
+
+    @FunctionalInterface
+    public interface Consumer<T> {
+        void accept(T t);
+    }
+
+还有一个Predicate，用来判断某项条件是否满足。经常用来进行筛滤操作：
+
+    @FunctionalInterface
+    public interface Predicate<T> {
+        boolean test(T t);
+    }
+    
+
+综上所述，一个λ表达式其实就是定义了一个匿名方法，只不过这个方法必须符合至少一个函数接口。
+
