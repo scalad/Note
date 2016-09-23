@@ -138,3 +138,12 @@ RESTful架构有一些典型的设计误区。
 	　　Accept: vnd.example-com.foo+json; version=1.1
 	　　Accept: vnd.example-com.foo+json; version=2.0
 
+**八、RESTful优势在哪**
+
+* 透明性，暴露资源存在。
+
+* 充分利用 HTTP 协议本身语义。
+
+* 无状态，这点非常重要。在调用一个接口（访问、操作资源）的时候，可以不用考虑上下文，不用考虑当前状态，极大的降低了复杂度
+
+* HTTP 本身提供了丰富的内容协商手段，无论是缓存，还是资源修改的乐观并发控制，都可以以业务无关的中间件来实现
