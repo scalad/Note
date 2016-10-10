@@ -1,0 +1,6 @@
+administrator
+administrators
+admin
+test
+idc
+vps
