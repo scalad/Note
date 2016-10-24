@@ -33,7 +33,7 @@
 
 ![](https://github.com/silence940109/Java/blob/master/Gradle_STS_Create/image/7.png)
 
-你可以从[](https://github.com/silence940109/SSM/releases/tag/1.0)下载该框架的源代码
+你可以从[下载](https://github.com/silence940109/SSM/releases/tag/1.0)下载该框架的源代码
 
 
 
