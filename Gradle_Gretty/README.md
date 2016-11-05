@@ -93,4 +93,4 @@ gradle buildProduct
 
 项目启动，修改项目文件，自动编译部署
 
-![](https://github.com/silence940109/Java/tree/master/Gradle_Gretty/image/1.png)
+![](https://github.com/silence940109/Java/blob/master/Gradle_Gretty/image/1.png)
