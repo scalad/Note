@@ -9,3 +9,9 @@
 
 ![](https://github.com/silence940109/Java/blob/master/chrome_postman/image/postman.png)
 
+关于POSTMAN发送JSON格式字符串请求的问题
+
+![](https://github.com/silence940109/Java/blob/master/chrome_postman/image/postman2.png)
+
+![](https://github.com/silence940109/Java/blob/master/chrome_postman/image/postman3.png)
+
