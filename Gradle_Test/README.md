@@ -72,3 +72,87 @@
 	
 	Total time: 11.404 secs
 
+4.注意，现在只有一个测试类被执行，Gradle将会使用查询以`**/<Java system property value=Sample>*`模式的类中查询出测试方法，因此我们不必要写该测试类的全类名，为了只执行AnotherSampleTest测试类我们也是如此：
+
+	$ gradle -Dtest.single=AnotherSample test
+	:compileJava UP-TO-DATE
+	:processResources UP-TO-DATE
+	:classes UP-TO-DATE
+	:compileTestJava
+	:processTestResources UP-TO-DATE
+	:testClasses UP-TO-DATE
+	:test
+	
+	com.mrhaki.gradle.AnotherSampleTest > anotherSample STARTED
+	
+	com.mrhaki.gradle.AnotherSampleTest > anotherSample PASSED
+	
+	BUILD SUCCESSFUL
+	
+	Total time: 5.62 secs
+
+5.我们也可以使用Java系统属性的模式来匹配多个测试类来一次性执行多个测试方法，。例如，我们可以使用`*Sample`来一次性执行SampleTest和AnotherSampleTest类的单元测试。
+
+	$ gradle -Dtest.single=*Sample test
+	:compileJava UP-TO-DATE
+	:processResources UP-TO-DATE
+	:classes UP-TO-DATE
+	:compileTestJava
+	:processTestResources UP-TO-DATE
+	:testClasses UP-TO-DATE
+	:test
+	
+	com.mrhaki.gradle.AnotherSampleTest > anotherSample STARTED
+	
+	com.mrhaki.gradle.AnotherSampleTest > anotherSample PASSED
+	
+	com.mrhaki.gradle.SampleTest > sample STARTED
+	
+	com.mrhaki.gradle.SampleTest > sample PASSED
+	
+	BUILD SUCCESSFUL
+	
+	Total time: 5.605 secs
+
+6.为了证明Java的系统属性同样对其他测试类型起作用，我们在buile.gradle配置文件中加入了新的task，我们把它叫做sampleTest并且包含了我们的测试文件，我们同样的使用了testLogging方便看测试结果在控制台的输出
+
+	// File: build.gradle
+	apply plugin: 'java'
+	
+	repositories {
+	    mavenCentral()
+	}
+	
+	dependencies {
+	    testCompile 'junit:junit:[4,)'
+	}
+	
+	task sampleTest(type: Test, dependsOn: testClasses) {
+	    include '**/*Sample*'
+	}
+	
+	tasks.withType(Test) {
+	    testLogging {
+	        events 'started', 'passed'
+	    }
+	}
+
+7.下一步我们想运行SampleTest类的单元测试，现在我们可以使用`-DsampleTest.single=S*`来作为运行参数
+
+	$ gradle -DsampleTest.single=S* sampleTest
+	:compileJava UP-TO-DATE
+	:processResources UP-TO-DATE
+	:classes UP-TO-DATE
+	:compileTestJava UP-TO-DATE
+	:processTestResources UP-TO-DATE
+	:testClasses UP-TO-DATE
+	:sampleTest
+	
+	com.mrhaki.gradle.SampleTest > sample STARTED
+	
+	com.mrhaki.gradle.SampleTest > sample PASSED
+	
+	BUILD SUCCESSFUL
+	
+	Total time: 10.677 secs
+	Code written with Gradle 1.6
