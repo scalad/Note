@@ -12,7 +12,7 @@
                 <configuration>  
                     <archive>  
                         <manifest>  
-                          			<mainClass>com.allen.capturewebdata.Main</mainClass>  
+                          <mainClass>com.allen.capturewebdata.Main</mainClass>  
                         </manifest>  
                     </archive>  
                     <descriptorRefs>  
