@@ -378,3 +378,5 @@ runner可以在测试中进行模拟，以此，reveive可以单独的进行测�
 	Sending message...
 	Received <Hello from RabbitMQ!>
 
+
+![](https://github.com/silence940109/Java/blob/master/SpringBoot-RabbitMQ/image/run.jpg)
