@@ -10,7 +10,7 @@ swagger用于定义API文档。
 * 传统的输入URL的测试方式对于post请求的传参比较麻烦（当然，可以使用postman这样的浏览器插件）
 * spring-boot与swagger的集成简单的一逼
 
-Maven
+Maven项目
 
 ```Xml
   <dependency>
@@ -25,7 +25,7 @@ Maven
   </dependency>
 ```
 
-Gradle
+Gradle项目
 
 	compile ("io.springfox:springfox-swagger2:2.2.2")
     compile ("io.springfox:springfox-swagger-ui:2.2.2")
@@ -52,6 +52,8 @@ object StartSpringBootApplication extends App {
 
 在controller层加入swagger api注解
 
+Scala模式
+
 ```Java
 
 @ComponentScan
@@ -70,6 +72,34 @@ class UserController @Autowired()(private val userService : UserService){
     
 }
 ```
+
+Java模式
+
+```Java
+@RestController
+@RequestMapping("/user")
+@Api("userController相关api")
+public class UserController {
+
+    @Autowired
+    private UserService userService;
+    
+    @ApiOperation("获取用户信息")
+    @ApiImplicitParams({
+        @ApiImplicitParam(paramType="header",name="username",dataType="String",required=true,value="用户的姓名",defaultValue="zhaojigang"),
+        @ApiImplicitParam(paramType="query",name="password",dataType="String",required=true,value="用户的密码",defaultValue="wangna")
+    })
+    @ApiResponses({
+        @ApiResponse(code=400,message="请求参数没填好"),
+        @ApiResponse(code=404,message="请求路径没有或页面跳转路径不对")
+    })
+    @RequestMapping(value="/getUser",method=RequestMethod.GET)
+    public User getUser(@RequestHeader("username") String username, @RequestParam("password") String password) {
+        return userService.getUser(username,password);
+    }
+}
+```
+
 说明：
 
 * @Api：用在类上，说明该类的作用
