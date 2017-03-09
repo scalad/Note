@@ -1,5 +1,7 @@
 ###jmap -histo pid 输出结果样式
 
+因为在Linux环境，用jdk自带的jmap工具(Linux/Unix环境特有的)，可以对进程中的内存对象监视，然后就运行命令jmap -histo [pid]，找内存中的对象数目变化,如下图所示：
+
 	 num     #instances         #bytes  class name
 	----------------------------------------------
 	   1:       1169837      131659368  [C
