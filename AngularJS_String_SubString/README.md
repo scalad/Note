@@ -1,4 +1,4 @@
-###angularjs 字符串截取 filter，用于截取字符串
+### angularjs 字符串截取 filter，用于截取字符串
 
 ```JavaScript
 
@@ -23,11 +23,11 @@ angular.module('ng').filter('cut', function () {
     });
 ```
 
-###Usage:
+### Usage:
 
 {{some_text | cut:true:100:' ...'}}
 
-###Options:
+### Options:
 
 * wordwise (boolean) - if true, cut only by words bounds,
 
