@@ -1,4 +1,4 @@
-####Spring Security 3.1 中功能强大的加密工具 PasswordEncoder
+#### Spring Security 3.1 中功能强大的加密工具 PasswordEncoder
 去年发生的密码泄漏事件，我们也对密码加密做了重新研究。 
   
 在筛选加密方法的过程中，发现了Spring Security 3.1.0版本中提供了新的PasswordEncoder，它的加密方法非常给力！虽然ns同学曾经说过“你的网站看起来很安全, 只是因为人家没精力或者没兴趣搞你...”，但是找到一个好的加密方法，无疑还是会有很大帮助的，至少会延迟破解的时间。  
