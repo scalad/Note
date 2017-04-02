@@ -1,4 +1,4 @@
-###SpringBoot-Scala-Swagger
+### SpringBoot-Scala-Swagger
 
 swagger用于定义API文档。
 
