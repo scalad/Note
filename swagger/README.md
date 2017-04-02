@@ -1,4 +1,4 @@
-###SpringMVC Swagger Swagger UI
+### SpringMVC Swagger Swagger UI
 
 按照现在的趋势，前后端分离几乎已经是业界对开发和部署方式所达成的一种共识。所谓的前后端分离，并不是传统行业中的按部门划分，一部分人只做前端（HTML/CSS/JavaScript等等），另一部分人只做后端（或者叫服务端），因为这种方式是不工作的：比如很多团队采取了后端的模板技术（JSP, FreeMarker, ERB等等），前端的开发和调试需要一个后台Web容器的支持，从而无法将前后端开发和部署做到真正的分离。
 
@@ -8,7 +8,7 @@
 
 不过，仅仅靠纪律是不够的，还需要通过工具的辅助来提高效率。下面，我们就来看一下，一个API设计工具——Swagger，将如何帮助我们更好的实现“前后端分离”。
 
-####Swagger
+#### Swagger
 
 Swagger 是一个规范和完整的框架，用于生成、描述、调用和可视化 RESTful 风格的 Web 服务。总体目标是使客户端和文件系统作为服务器以同样的速度来更新。文件的方法，参数和模型紧密集成到服务器端的代码，允许API来始终保持同步。Swagger 让部署管理和使用功能强大的API从未如此简单。
 
@@ -74,7 +74,7 @@ Swagger 是一个规范和完整的框架，用于生成、描述、调用和可
 该swagger作为一个bean被spring所管理
 
 
-####配置Swagger UI
+#### 配置Swagger UI
 
 到[Swagger UI](https://github.com/swagger-api/swagger-ui)Github主页下载
 
