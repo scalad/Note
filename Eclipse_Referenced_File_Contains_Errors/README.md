@@ -1,4 +1,4 @@
-###Eclipse Xml编译错误Referenced file contains errors - spring-beans-4.0.xsd
+### Eclipse Xml编译错误Referenced file contains errors - spring-beans-4.0.xsd
 
 在eclipse中，有时候在xml文件中，特别是于spring相关的配置文件中，会出现一些不影响程序正常运行的编译错误，如：
 
