@@ -1,4 +1,4 @@
-###SpringBoot Scala
+### SpringBoot Scala
 
 可以说近几年Spark的流行带动了Scala的发展，它集成了面向对象编程和函数式编程的各种特性，Scala具有更纯Lambda表粹的函数式业务逻辑解决方案，其语法比Java8后Lambda更加简洁方便，SpringBoot为spring提供了一种更加方便快捷的方式，不再要求写大量的配置文件，作为一名Scala爱好者，使用SpringBoot结合Scala将大大节省我们开发的时间以及代码量,让程序员可以花更多的时间关注业务逻辑。[项目源代码所在Github地址](https://github.com/silence940109/SpringBoot-Scala)
 本文将使用SpringBoot+Scala+Gradle部署Web应用，如果你对Gradle不熟悉，或者IDE中没有Gradle，你可以使用Maven进行管理，原理上是一样的
