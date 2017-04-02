@@ -2,7 +2,7 @@
 
 这个指南将引导你建立一个RabbitMQ AMQP服务器发布和订阅消息的过程。
 
-###声明
+### 声明
 可以使用本人阿里云安装好的RabbitMQ服务器
 	
 	host:http://120.27.114.229
@@ -10,10 +10,10 @@
 	password:root
 	web management: http://120.27.114.229:15672
 
-###构建
+### 构建
 你会使用 Spring AMQP的 RabbitTemplate构建应用系统来发布消息并且使用一个MessageListenerAdapter POJO来订阅消息
 
-###需要
+### 需要
 * 15分钟
 * 一款文本编辑器或者IDE
 * [JDK 1.8+](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
@@ -21,7 +21,7 @@
 * 你也可以从这个项目中导入代码或者可以在导入[Spring Tool Suite(STS)](https://spring.io/guides/gs/sts)(个人非常喜欢的一款eclipse的IDE)中查看
 * RabbitMQ服务器
 
-###如何完成
+### 如何完成
 像许多的Spring [Getting Started guides](https://spring.io/guides)项目,你可以从头开始并完成每一步，或者你可以绕过你已经熟悉的一些步骤，无论是哪种步骤，你最终可以完成代码
 
 从头开始的话，请去看[使用Gradle构建](https://spring.io/guides/gs/messaging-rabbitmq/#scratch)
@@ -35,10 +35,10 @@
 
 当你完成时，你可以对比在`gs-messaging-rabbitmq/complete.`目录中的结果和你的结果
 
-###使用Gradle构建
+### 使用Gradle构建
 第一步你需要建立一个基本的脚本，当你构建APP应用时你可以任何你喜欢的构建系统，但这些代码你必须要使用到[Gradle](http://gradle.org/)和[Maven](https://maven.apache.org/),如果你对这两个不熟悉，你可以参考[Building Java Projects with Gradle](https://spring.io/guides/gs/gradle)和[Building Java Projects with Maven](https://spring.io/guides/gs/maven)
 
-####1.创建目录结构
+#### 1.创建目录结构
 在你项目的文件夹中创建如下的子目录结构，例如，在*nix系统中使用命令创建`mkdir -p src/main/java/hello`
 
 	└── src
@@ -46,7 +46,7 @@
 	        └── java
 	            └── hello
 
-####2.创建Gradle配置文件build.gradle
+#### 2.创建Gradle配置文件build.gradle
 以下来自[初始化Gradle配置文件](https://github.com/silence940109/SpringBoot-RabbitMQ/blob/master/build.gradle)
 
 `build.gradle`
@@ -88,10 +88,10 @@
 * 它为`public static void main()`方法寻找可执行的类作为标志
 * 它提供了一个内置的依赖解析器来匹配[Spring Boot Dependencies](https://github.com/spring-projects/spring-boot/blob/master/spring-boot-dependencies/pom.xml)依赖版本号，你可以重写任何你希望的版本，但它默认启动时选择的版本集合
 
-###使用Maven构建
+### 使用Maven构建
 第一步你需要建立一个基本的脚本，当你构建APP应用时你可以任何你喜欢的构建系统，但这些代码你必须要使用到[Maven](https://maven.apache.org/),如果你对Maven不熟悉，你可以参考[Building Java Projects with Maven](https://spring.io/guides/gs/maven)
 
-####1.创建目录结	构
+#### 1.创建目录结	构
 在你项目的文件夹中创建如下的子目录结构，例如，在*nix系统中使用命令创建`mkdir -p src/main/java/hello`
 
 	└── src
@@ -139,8 +139,8 @@
 * 它为`public static void main()`方法寻找可执行的类作为标志
 * 它提供了一个内置的依赖解析器来匹配[Spring Boot Dependencies](https://github.com/spring-projects/spring-boot/blob/master/spring-boot-dependencies/pom.xml)依赖版本号，你可以重写任何你希望的版本，但它默认启动时选择的版本集合
 
-###使用IDE编译
-####1.建立RabbitMQ沙箱
+### 使用IDE编译
+#### 1.建立RabbitMQ沙箱
 在你可以构建你的消息应用前，你需要建发布和订阅消息的服务器
 
 RabbitMQ是一个AMQP(Advanced Message Queuing Protocol,一个提供统一消息服务的应用层标准高级消息队列协议,是应用层协议的一个开放标准,为面向消息的中间件设计)服务器,这个服务器是免费的，你可以在[http://www.rabbitmq.com/download.html](http://www.rabbitmq.com/download.html),你可以手动的下载，或者如果你使用的Mac可以自己制作
@@ -174,7 +174,7 @@ RabbitMQ是一个AMQP(Advanced Message Queuing Protocol,一个提供统一消息
 	   
 如果这个文件在你的当前目录中你可以运行`docker-compose up`来是RabbitMQ运行在容器中
 
-####2.创建RabbitMQ消息订阅
+#### 2.创建RabbitMQ消息订阅
 任何基于消息的应用程序你都需要创建一个消息订阅来响应消息的发布
 
 `src/main/java/hello/Receiver.java`
@@ -206,7 +206,7 @@ public class Receiver {
 
 >为了方便，这个POJO类有一个`CountDownLatch`类的属性，它允许当消息接收到时给它一个信号量，这是你在生产环境中你不太可能实现的
 
-####3.注册监听并发布消息
+#### 3.注册监听并发布消息
 Spring AMQP的`RabbitTemplate`提供了你使用RabbitMQ发布和订阅消息所需要的一切，特别的，你需要如下配置：
 
 * 一个消息监听的容器
@@ -315,7 +315,7 @@ public class Application {
 
 >Spring AMQP要求`Queue`,`TopicExchang`,`Binding`被Spring按照顺序定义为定理的bean
 
-####4.发送文本消息
+#### 4.发送文本消息
 测试消息是通过`CommandLineRunner`发送的，它也可以等待并锁定接受者并且关闭应用程序：
 
 `src/main/java/hello/Runner.java`
@@ -357,10 +357,10 @@ public class Runner implements CommandLineRunner {
 
 runner可以在测试中进行模拟，以此，reveive可以单独的进行测试
 
-####5.启动应用
+#### 5.启动应用
 `main()`方法通过创建Spring应用环境来启动进程。这个进程启动了消息监听容器，它会开始监听消息.`Runner`bean会自动执行：它从应用上下文中检索`RabbitTemplate`并且往"sping-boot"队列中发送一个`Hello from RabbitMQ!`的消息，最后，它关闭Spring应用程序，程序结束
 
-####6.编译可执行的JAR包
+#### 6.编译可执行的JAR包
 你可以使用Gradle或者Maven从命令行运行程序，或者你可以编译成一个包含了所有的依赖，类和资源的可执行的JAR文件，然后就可以直接运行。这使它在不同的环境和在整个应用程序的开发声明周期的部署中变得非常容易
 
 如果你使用的时Gradle,你需要使用`./gradlew bootRun`来运行应用程序，或者你可以使用`./gradlew build`编译成JAR文件，然后你就可以运行JAR文件了
