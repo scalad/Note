@@ -1,4 +1,4 @@
-###Mysql Replace Into
+### Mysql Replace Into
 
 replace into 跟 insert 功能类似，
 
@@ -18,7 +18,7 @@ replace into 有三种形式：
 
 前两种形式用的多些。其中 “into” 关键字可以省略，不过最好加上 “into”，这样意思更加直观。另外，对于那些没有给予值的列，MySQL 将自动为这些列赋上默认值。
 
-####Insert update
+#### Insert update
 INSERT 中 ON DUPLICATE KEY UPDATE的使用
 
 如果您指定了ON DUPLICATE KEY UPDATE，并且insert行后会导致在一个UNIQUE索引或PRIMARY KEY中出现重复值，则执行旧行UPDATE。例如，如果列a被定义为UNIQUE，并且包含值1，则以下两个语句具有相同的效果：
