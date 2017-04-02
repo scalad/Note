@@ -2,7 +2,7 @@ Spring 框架作为目前非常流行的一个 Java 应用开发框架，它所�
 
 Spring 框架对于很多 Java 开发人员来说都不陌生。自从 2002 年发布以来，Spring 框架已经成为企业应用开发领域非常流行的基础框架。有大量的企业应用基于 Spring 框架来开发。Spring 框架包含几十个不同的子项目，涵盖应用开发的不同方面。如此多的子项目和组件，一方面方便了开发人员的使用，另外一个方面也带来了使用方面的问题。每个子项目都有一定的学习曲线。开发人员需要了解这些子项目和组件的具体细节，才能知道如何把这些子项目整合起来形成一个完整的解决方案。在如何使用这些组件上，并没有相关的最佳实践提供指导。对于新接触 Spring 框架的开发人员来说，并不知道如何更好的使用这些组件。Spring 框架的另外一个常见问题是要快速创建一个可以运行的应用比较麻烦。Spring Boot 是 Spring 框架的一个新的子项目，用于创建 Spring 4.0 项目。它的开发始于 2013 年。2014 年 4 月发布 1.0.0 版本。它可以自动配置 Spring 的各种组件，并不依赖代码生成和 XML 配置文件。Spring Boot 也提供了对于常见场景的推荐组件配置。Spring Boot 可以大大提升使用 Spring 框架时的开发效率。本文将对 Spring Boot 进行详细的介绍。
 
-###简介
+### 简介
 从 Spring Boot 项目名称中的 Boot 可以看出来，Spring Boot 的作用在于创建和启动新的基于 Spring 框架的项目。它的目的是帮助开发人员很容易的创建出独立运行和产品级别的基于 Spring 框架的应用。Spring Boot 会选择最适合的 Spring 子项目和第三方开源库进行整合。大部分 Spring Boot 应用只需要非常少的配置就可以快速运行起来。
 
 Spring Boot 包含的特性如下：
@@ -78,7 +78,7 @@ public class Application {
 
 代码清单 2 中的“@EnableAutoConfiguration”注解的作用在于让 Spring Boot 根据应用所声明的依赖来对 Spring 框架进行自动配置，这就减少了开发人员的工作量。注解“@RestController”和”@RequestMapping”由 Spring MVC 提供，用来创建 REST 服务。这两个注解和 Spring Boot 本身并没有关系。
 
-###Spring Boot 推荐的基础 POM 文件
+### Spring Boot 推荐的基础 POM 文件
 上一节的代码清单 1 中给出的“org.springframework.boot:spring-boot-starter-web”是 Spring Boot 所提供的推荐的基础 POM 文件之一，用来提供创建基于 Spring MVC 的 Web 应用所需的第三方库依赖。除了这个 POM 文件之外，Spring Boot 还提供了其他类似的 POM 文件。所有这些基础 POM 依赖都在“org.springframework.boot”组中。一些重要 POM 文件的具体说明见表 1。
 
 `表 1. Spring Boot 推荐的基础 POM 文件`
@@ -108,12 +108,12 @@ public class Application {
 
 所有这些 POM 依赖的好处在于为开发 Spring 应用提供了一个良好的基础。Spring Boot 所选择的第三方库是经过考虑的，是比较适合产品开发的选择。但是 Spring Boot 也提供了不同的选项，比如日志框架可以用 Logback 或 Log4j，应用服务器可以用 Tomcat 或 Jetty。
 
-###自动配置
+### 自动配置
 Spring Boot 对于开发人员最大的好处在于可以对 Spring 应用进行自动配置。Spring Boot 会根据应用中声明的第三方依赖来自动配置 Spring 框架，而不需要进行显式的声明。比如当声明了对 HSQLDB 的依赖时，Spring Boot 会自动配置成使用 HSQLDB 进行数据库操作。
 
 Spring Boot 推荐采用基于 Java 注解的配置方式，而不是传统的 XML。只需要在主配置 Java 类上添加“@EnableAutoConfiguration”注解就可以启用自动配置。Spring Boot 的自动配置功能是没有侵入性的，只是作为一种基本的默认实现。开发人员可以通过定义其他 bean 来替代自动配置所提供的功能。比如当应用中定义了自己的数据源 bean 时，自动配置所提供的 HSQLDB 就不会生效。这给予了开发人员很大的灵活性。既可以快速的创建一个可以立即运行的原型应用，又可以不断的修改和调整以适应应用开发在不同阶段的需要。可能在应用最开始的时候，嵌入式的内存数据库（如 HSQLDB）就足够了，在后期则需要换成 MySQL 等数据库。Spring Boot 使得这样的切换变得很简单。
 
-###外部化的配置
+### 外部化的配置
 在应用中管理配置并不是一个容易的任务，尤其是在应用需要部署到多个环境中时。通常会需要为每个环境提供一个对应的属性文件，用来配置各自的数据库连接信息、服务器信息和第三方服务账号等。通常的应用部署会包含开发、测试和生产等若干个环境。不同的环境之间的配置存在覆盖关系。测试环境中的配置会覆盖开发环境，而生产环境中的配置会覆盖测试环境。Spring 框架本身提供了多种的方式来管理配置属性文件。Spring 3.1 之前可以使用 PropertyPlaceholderConfigurer。Spring 3.1 引入了新的环境（Environment）和概要信息（Profile）API，是一种更加灵活的处理不同环境和配置文件的方式。不过 Spring 这些配置管理方式的问题在于选择太多，让开发人员无所适从。Spring Boot 提供了一种统一的方式来管理应用的配置，允许开发人员使用属性文件、YAML 文件、环境变量和命令行参数来定义优先级不同的配置值。
 
 Spring Boot 所提供的配置优先级顺序比较复杂。按照优先级从高到低的顺序，具体的列表如下所示。
@@ -149,7 +149,7 @@ RandomValuePropertySource 可以用来生成测试所需要的各种不同类型
 	user.number=${random.int(100)}
 	user.range=${random.int[100, 1000]}
 
-####属性文件
+#### 属性文件
 属性文件是最常见的管理配置属性的方式。Spring Boot 提供的 SpringApplication 类会搜索并加载 application.properties 文件来获取配置属性值。SpringApplication 类会在下面位置搜索该文件。
 
 * 当前目录的“/config”子目录。
@@ -176,7 +176,7 @@ RandomValuePropertySource 可以用来生成测试所需要的各种不同类型
 	 }
 	}
 
-####YAML
+#### YAML
 相对于属性文件来说，YAML 是一个更好的配置文件格式。YAML 在 Ruby on Rails 中得到了很好的应用。SpringApplication 类也提供了对 YAML 配置文件的支持，只需要添加对 SnakeYAML 的依赖即可。代码清单 5 给出了 application.yml 文件的示例。
 
 清单 5. 使用 YAML 表示的配置属性
@@ -208,11 +208,11 @@ RandomValuePropertySource 可以用来生成测试所需要的各种不同类型
 	 private String password;
 	}
 
-###开发 Web 应用
+### 开发 Web 应用
 Spring Boot 非常适合于开发基于 Spring MVC 的 Web 应用。通过内嵌的 Tomcat 或 Jetty 服务器，可以简化对 Web 应用的部署。Spring Boot 通过自动配置功能对 Spring MVC 应用做了一些基本的配置，使其更加适合一般 Web 应用的开发要求。
 
-####HttpMessageConverter
+#### HttpMessageConverter
 Spring MVC 中使用 HttpMessageConverter 接口来在 HTTP 请求和响应之间进行消息格式的转换。默认情况下已经通过 Jackson 支持 JSON 和通过 JAXB 支持 XML 格式。可以通过创建自定义 HttpMessageConverters 的方式来添加其他的消息格式转换实现。
 
-####静态文件
+#### 静态文件
 默认情况下，Spring Boot 可以对 “/static”、“/public”、“/resources” 或 “/META-INF/resources” 目录下的静态文件提供支持。同时 Spring Boot 还支持 Webjars。路径“/webjars/**”下的内容会由 webjar 格式的 Jar 包来提供。
