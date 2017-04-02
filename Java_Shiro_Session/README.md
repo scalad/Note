@@ -1,4 +1,4 @@
-###Shiro Session
+### Shiro Session
 session管理可以说是Shiro的一大卖点
 
 Shiro可以为任何应用(从简单的命令行程序还是手机应用再到大型企业应用)提供会话解决方案。
@@ -99,7 +99,7 @@ public Session getSession(boolean create) {
 }
 ```
 
-###SessionManager
+### SessionManager
 
 正如其名，sessionManager用于为应用中的Subject管理session，比如创建、删除、失效或者验证等。
 和Shiro中的其他核心组件一样，他由SecurityManager维护。
@@ -462,7 +462,7 @@ public Serializable generateId(Session session) {
 
 当然，我们也可以自己定制实现SessionIdGenerator。 
 
-###Session Validation & Scheduling
+### Session Validation & Scheduling
 
 比如说用户在浏览器上使用web应用时session被创建并缓存什么的都没有什么问题，只是用户退出的时候可以直接关掉浏览器、关掉电源、停电或者其他天灾什么的。
 
