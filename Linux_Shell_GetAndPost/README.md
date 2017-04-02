@@ -1,8 +1,8 @@
-###Linux系统模拟Http的get或post请求
+### Linux系统模拟Http的get或post请求
 
 Http请求指的是客户端向服务器的请求消息，Http请求主要分为get或post两种，在Linux系统下可以用curl和wget命令来模拟Http的请求。下面就来介绍一下Linux系统如何模拟Http的get或post请求。
 
-####一、get请求：
+#### 一、get请求：
 	
 	1、使用curl命令：
 	
@@ -14,7 +14,7 @@ Http请求指的是客户端向服务器的请求消息，Http请求主要分为
 	2、使用wget命令：
 	wget “http://www.baidu.com”也可以
 
-####二、post请求
+#### 二、post请求
 
 	1、使用curl命令（通过-d参数，把访问参数放在里面）：
 	
