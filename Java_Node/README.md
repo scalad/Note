@@ -1,4 +1,4 @@
-###二叉树	
+### 二叉树
 	public class Node {
 	
 		public int value;
