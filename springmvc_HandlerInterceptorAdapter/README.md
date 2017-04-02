@@ -1,4 +1,4 @@
-###Spring MVC 中 HandlerInterceptorAdapter的使用
+### Spring MVC 中 HandlerInterceptorAdapter的使用
 
 一般情况下，对来自浏览器的请求的拦截，是利用Filter实现的，这种方式可以实现Bean预处理、后处理。 
 Spring MVC的拦截器不仅可实现Filter的所有功能，还可以更精确的控制拦截精度。 
