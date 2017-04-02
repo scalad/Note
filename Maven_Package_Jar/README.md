@@ -1,4 +1,4 @@
-###aven中把依赖的JAR包一起打包
+### Maven中把依赖的JAR包一起打包
 
 这里所用到的MAVEN-PLUGIN是MAVNE-ASSEMBLY-PLUGIN
 官方网站是:[http://maven.apache.org/plugins/maven-assembly-plugin/usage.html](http://maven.apache.org/plugins/maven-assembly-plugin/usage.html)
