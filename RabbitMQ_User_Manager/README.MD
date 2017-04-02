@@ -1,4 +1,4 @@
-###rabbitmq——用户管理
+### rabbitmq——用户管理
 安装最新版本的rabbitmq(3.3.1)，并启用management plugin后，使用默认的账号guest登陆管理控制台，却提示登陆失败。
 
 翻看官方的release文档后，得知由于账号guest具有所有的操作权限，并且又是默认账号，出于安全因素的考虑，guest用户只能通过localhost登陆使用，并建议修改guest用户的密码以及新建其他账号管理使用rabbitmq(该功能是在3.3.0版本引入的)。
