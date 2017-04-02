@@ -1,11 +1,11 @@
-###Redis Monitor配置安装
+### Redis Monitor配置安装
 
-####required
+#### required
 
 * [python 2.7+](https://www.python.org/ftp/python/2.7.12/python-2.7.12.amd64.msi)
 * [redis-monitor](https://github.com/NetEaseGame/redis-monitor)
 
-####install
+#### install
 
 1.先[下载](https://www.python.org/ftp/python/2.7.12/python-2.7.12.amd64.msi)Window64位版本的Python，安装,python命令会自动加入到系统环境中
 
