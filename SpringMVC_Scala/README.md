@@ -1,4 +1,4 @@
-###Scala和Spring集成(Scala和Java完成共同编译)
+### Scala和Spring集成(Scala和Java完成共同编译)
 
 Scala看起来像是一种纯粹的面向对象编程语言，而又无缝地结合了命令式和函数式的编程风格。前日，Groovy创始人撰博文称Scala将取代Java。他说，如果他在2003年看过《Programming Scala》的话，那可能就不会有Groovy了。
 
