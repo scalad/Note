@@ -1,4 +1,4 @@
-###Xshell实现Windows上传文件到Linux主机
+### Xshell实现Windows上传文件到Linux主机
 经常有这样的需求，我们在Windows下载的软件包，如何上传到远程Linux主机上？还有如何从Linux主机下载软件包到Windows下；之前我的做法现在看来好笨好繁琐，不过也达到了目的，笨人有本方法嘛；
 
 我是怎么操作的：
