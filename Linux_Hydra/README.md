@@ -1,4 +1,4 @@
-###在线破解工具Hydra爆破3389服务器
+### 在线破解工具Hydra爆破3389服务器
 hydra是一款全能的暴力破解工具，功能强大，几乎支持所有的协议，是著名黑客组织thc开发的。
 
 在Kali Linux下已经是默认安装的，于是测试爆破一下自己的一台VM虚拟机服务器。hydra还支持GUI图形界面(xhydra)，不过习惯还是命令好用。
@@ -38,7 +38,7 @@ hydra是一款全能的暴力破解工具，功能强大，几乎支持所有的
 	teamspeak sip vmauthd firebird ncp afp等等。	
 #
 
-####爆破过程：
+#### 爆破过程：
 ![](https://github.com/silence940109/Java/blob/master/Linux_Hydra/image/777998-20160129150436380-748025426.jpg)
 
 其中命令：hydra 192.168.1.12 rdp -L users.txt -P pass.txt -V 
