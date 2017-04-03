@@ -1,6 +1,6 @@
-####Java中Comparable和Comparator比较
+#### Java中Comparable和Comparator比较
 
-####Comparable 简介
+#### Comparable 简介
 
 Comparable 是排序接口。
 
@@ -22,7 +22,7 @@ Comparable 接口仅仅只包括一个函数，它的定义如下：
 说明：
 假设我们通过 x.compareTo(y) 来“比较x和y的大小”。若返回“负数”，意味着“x比y小”；返回“零”，意味着“x等于y”；返回“正数”，意味着“x大于y”。
 
-####Comparator 简介
+#### Comparator 简介
 
 Comparator 是比较器接口。
 
@@ -51,7 +51,7 @@ Comparator 接口仅仅只包括两个个函数，它的定义如下：
 
 (02) int compare(T o1, T o2) 是“比较o1和o2的大小”。返回“负数”，意味着“o1比o2小”；返回“零”，意味着“o1等于o2”；返回“正数”，意味着“o1大于o2”。
 
-####Comparator 和 Comparable 比较
+#### Comparator 和 Comparable 比较
 Comparable是排序接口；若一个类实现了Comparable接口，就意味着“该类支持排序”。
 而Comparator是比较器；我们若需要控制某个类的次序，可以建立一个“该类的比较器”来进行排序。
 
@@ -291,7 +291,7 @@ f) 运行结果
 	Desc(age) sort, list:[ddd - 40, AAA - 30, ccc - 20, bbb - 10]
 	eee - 100 EQUAL eee - 100
 
-###Difference between Comparator and Comparable in Java
+### Difference between Comparator and Comparable in Java
 
 以下根据[https://www.javacodegeeks.com/2013/03/difference-between-comparator-and-comparable-in-java.html](https://www.javacodegeeks.com/2013/03/difference-between-comparator-and-comparable-in-java.html)翻译而来
 
@@ -338,7 +338,7 @@ Comparator接口：实现可排序的类的对象不需要实现该接口，其�
        }
     });
 
-###Comparator vs Comparable
+### Comparator vs Comparable
 
 ![](https://github.com/silence940109/Java/blob/master/image/comparableAndcomparator.png)
 
