@@ -1,10 +1,10 @@
-###jmeter性能测试之windows篇
+### jmeter性能测试之windows篇
 
-####一、jmeter在windows中的安装
+#### 一、jmeter在windows中的安装
 
 jmeter就是传说中的绿色软件，无需安装，只需要在官网下载zip包后，解压即可。
 
-####二、jmeter的运行
+#### 二、jmeter的运行
 
 jmeter需要依托jdk，首先你的系统中得有jdk。在windows下，进入jmeter解压后的主目录（如apache-jmeter-2.13），进入bin目录，双击运行jmeter.bat即可启动jmeter。如果打开时cmd窗口报错，一般是给jmeter分配的空间太小，需要调整一些参数，我们可以在编辑器中打开jmeter.bat，调整两个参数的值，一个是HEAP，一个是NEW。我的jmeter中这两个值配置如下：
 
@@ -17,7 +17,7 @@ jmeter需要依托jdk，首先你的系统中得有jdk。在windows下，进入j
 
 ![](https://github.com/scalad/Note/blob/master/Java_jmeter_server_polling_pressure_test/image/2564647465.png)
 
-####三、压测一个普通的get接口
+#### 三、压测一个普通的get接口
 
 下面我们来进行一个普通的get接口压测。接口是我自己写的，部署在自己本地机器，你们是访问不了的^_^。
 接口地址：http://127.0.0.1:5000/api/search/user
@@ -138,7 +138,7 @@ jmeter默认自带的图表包含的东西并不多，不过我们可以在jmete
 
 从响应时间图我们可以看到响应时间大概是11ms左右。大家可以对照聚合报告中的数据合并这连个图进行对比，看下是否一致。
 
-####四、设置请求header
+#### 四、设置请求header
 
 看到这里，您对基本的get接口压测就有一定了解了。有时候，我们的请求是需要带header的，对于这种情况该怎么办呢？jmeter照样提供了相应的方法，我们可以添加一个HTTP信息头管理器，如下：
 
@@ -152,13 +152,13 @@ jmeter默认自带的图表包含的东西并不多，不过我们可以在jmete
 
 更多的设置就等您来慢慢发掘吧！jmeter已经足够强大。
 
-####五、压测一个post接口
+#### 五、压测一个post接口
 
 对于post接口的压测，其实是完全一样的，只有在设置HTTP请求的时候，设置为POST方法，并且请求body放入“Body Data”就可以，如下：
 
 ![](https://github.com/scalad/Note/blob/master/Java_jmeter_server_polling_pressure_test/image/1973724565.png)
 
-####六、参数化
+#### 六、参数化
 
 以上我们讲到的接口测试，参数都是固定的，那如果我们有一个测试集，要在这次性能测试中对同一个接口发送不同的参数该怎么办呢？这种需求很多，比如要进行一个线上真实流量的的测试，我们需要把nginx日志拿到，并且把这些真实的参数作为压测的输入，就会涉及到参数化。常用的参数化方法大概分为两种，下面分别介绍。
 
@@ -179,7 +179,7 @@ jmeter默认自带的图表包含的东西并不多，不过我们可以在jmete
 当文件的三行取完后，再次从头开始依次取值。
 我们先看第一种参数化方法。
 
-#####1.函数助手
+##### 1.函数助手
 
 在jmeter菜单点击选项->函数助手对话框，弹出如下：
 
@@ -197,7 +197,7 @@ jmeter默认自带的图表包含的东西并不多，不过我们可以在jmete
 
 运行一下，并在查看结果树中查看每次请求的是否是不同的参数。
 
-#####2.CSV Data Set Config
+##### 2.CSV Data Set Config
 这种方法下，我们需要添加一个配置原件，就叫CSV Data Set Config：
 
 ![](https://github.com/scalad/Note/blob/master/Java_jmeter_server_polling_pressure_test/image/115424753.png)
