@@ -1,4 +1,4 @@
-###jmap -histo pid 输出结果样式
+### jmap -histo pid 输出结果样式
 
 因为在Linux环境，用jdk自带的jmap工具(Linux/Unix环境特有的)，可以对进程中的内存对象监视，然后就运行命令jmap -histo [pid]，找内存中的对象数目变化,如下图所示：
 
@@ -59,7 +59,7 @@
 	2950:             1             16  org.springframework.data.redis.connection.convert.StringToRedisClientInfoConverter
 	Total       3090439      316004152
 
-####输出结果说明
+#### 输出结果说明
 
 	[C is a char[]
 	[S is a short[]
