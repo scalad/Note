@@ -1,4 +1,4 @@
-###HashMap And HashTable
+### HashMap And HashTable
 HashMap和Hashtable两个类都实现了Map接口，二者保存K-V对（key-value对）；HashSet则实现了Set接口，性质类似于集合。Hashtable的应用非常广泛，HashMap是新框架中用来代替Hashtable的类，也就是说建议使用HashMap，不要使用Hashtable。可能你觉得Hashtable很好用，为什么不用呢？这里简单分析他们的区别。
 
 一、继承的父类不同
@@ -150,12 +150,12 @@ Hashtable和HashMap它们两个内部实现方式的数组的初始大小和扩�
 
 Java 5提供了ConcurrentHashMap，它是HashTable的替代，比HashTable的扩展性更好。
 
-###我们能否让HashMap同步？
+### 我们能否让HashMap同步？
 HashMap可以通过下面的语句进行同步：
 
 	Map m = Collections.synchronizeMap(hashMap);
 
-###关于ConcurrentHashMap
+### 关于ConcurrentHashMap
 
 	public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
 	    implements ConcurrentMap<K,V>, Serializable {
