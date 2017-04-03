@@ -1,4 +1,4 @@
-###Chrome Postman进行rest请求模拟
+### Chrome Postman进行rest请求模拟
 
 在web和移动端开发时，常常会调用服务器端的restful接口进行数据请求，为了调试，一般会先用工具进行测试，通过测试后才开始在开发中使用。这里介绍一下如何在chrome浏览器利用postman应用进行restful api接口请求测试。
 
