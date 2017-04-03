@@ -1,4 +1,4 @@
-###Gretty插件实现Gradle Web项目热部署
+### Gretty插件实现Gradle Web项目热部署
 在build.gradle配置文件中
 
 	buildscript {

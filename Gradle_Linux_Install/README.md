@@ -1,5 +1,5 @@
-###Gradle Linux安装
-####使用SDKMAN安装
+### Gradle Linux安装
+#### 使用SDKMAN安装
 
 sdkman(The Software Development Kit Manager), 中文名为:软件开发工具管理器．这个工具的主要用途是用来解决在类unix操作系统(如mac, Linux等)中多种版本开发工具的切换, 安装和卸载的工作．对于windows系统的用户可以使用Powershell CLI来体验．
 
@@ -45,31 +45,31 @@ sdkman这个工具就可以很好的解决这类问题，它的工作原理是�
 	                 eg: $ sdk install groovy
 
 
-####安装指定版本的gradle
+#### 安装指定版本的gradle
 打开一个新的终端执行以下命令安装指定版本的gradle
 		
 	$ sdk install gradle 3.3
 
 ![](https://github.com/silence940109/Java/blob/master/Gradle_Linux_Install/image/install.jpg)
-####移除安装的gradle
+#### 移除安装的gradle
 
 	 sdk uninstall gradle
 	 or
 	 sdk rm gradle
 
-####使用临时版本
+#### 使用临时版本
 
 	sdk use gradle 3.0
 
-####设置默认版本
+#### 设置默认版本
 	
     sdk default gradle 3.0
 
-####查看安装的sdk版本列表
+#### 查看安装的sdk版本列表
 
 	sdk current gradle
 
-####Grale其他地址
+#### Grale其他地址
 
 [Binary only distribution (no documentation or source code)](https://services.gradle.org/distributions/gradle-3.3-all.zip)
 
