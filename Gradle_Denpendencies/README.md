@@ -1,4 +1,4 @@
-##Gradle排除依赖关系
+## Gradle排除依赖关系
 
 在IDE中发现了C3P0的依赖，但是在build.gradle并没有手动导入，所以说某个jar包依赖了，在STS中没有像Maven可以直接查看依赖的窗口
 
