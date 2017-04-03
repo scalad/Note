@@ -1,6 +1,6 @@
-####HashSet And TreeSet
+### HashSet And TreeSet
 
-####Set接口
+#### Set接口
 
 Set不允许包含相同的元素，如果试图把两个相同元素加入同一个集合中，add方法返回false。
 Set判断两个对象相同不是使用==运算符，而是根据equals方法。也就是说，只要两个对象用equals方法比较返回true，Set就不 会接受这两个对象,并且最多包含一个 null 元素。
@@ -11,7 +11,7 @@ HashSet与TreeSet都是基于Set接口的实现类。其中TreeSet是Set的子�
 	Set接口——|——HashSet实现类
              		|——LinkedHashSet实现类
 
-####HashSet
+#### HashSet
 * 不能保证元素的排列顺序，顺序有可能发生变化
 * 不是同步的
 * 集合元素可以是null,但只能放入一个null
@@ -65,7 +65,7 @@ HashSet与TreeSet都是基于Set接口的实现类。其中TreeSet是Set的子�
 	}
 #
 
-####TreeSet类
+#### TreeSet类
 TreeSet是SortedSet接口的唯一实现类，TreeSet可以确保集合元素处于排序状态。TreeSet支持两种排序方式，自然排序 和定制排序，其中自然排序为默认的排序方式。向TreeSet中加入的应该是同一个类的对象。
 
 TreeSet判断两个对象不相等的方式是两个对象通过equals方法返回false，或者通过CompareTo方法比较没有返回0
@@ -162,6 +162,6 @@ obj1大于obj2，如果是 负数，则表明obj1小于obj2。
 8、SortedSet tailSet（fromElement）：返回此Set的子集，由大于等于fromElement的元素组成。
 
 
-####LinkedHashSet
+#### LinkedHashSet
 HashSet还有一个子类LinkedHashSet，其集合也是根据元素hashCode值来决定元素的存储位置，但它同时用链表来维护元素的次序，这样使得元素看起来是以插入的顺序保存的，也就是说，当遍历LinkedHashSet集合元素时，它将会按元素的添加顺序来访问集合里的元素。所以LinkedHashSet的性能略低于HashSet，但在迭代访问全部元素时将有很好的性能，因为它以链表来维护内部顺序。
 
