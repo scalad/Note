@@ -1,4 +1,4 @@
-###ArrayList And Vector
+### ArrayList And Vector
 
 List,就如图名字所示一样,是元素的有序列表。当我们讨论List时，将其与Set作对比是一个很好的办法,Set集合中的元素是无序且唯一的。
 
