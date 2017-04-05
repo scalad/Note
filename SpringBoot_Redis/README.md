@@ -1,4 +1,4 @@
-### SpringBoot Redis配置 ###
+### SpringBoot Redis配置以及使用Redis作缓存 ###
 
 Spring Boot是为了简化Spring开发而生，从Spring 3.x开始，Spring社区的发展方向就是弱化xml配置文件而加大注解的戏份。最近召开的SpringOne2GX2015大会上显示：Spring Boot已经是Spring社区中增长最迅速的框架，前三名是：Spring Framework，Spring Boot和Spring Security，这个应该是未来的趋势。
 
@@ -179,3 +179,16 @@ public class ReportService {
 		* 访问：http://localhost:8080/report/test2
 	* 验证缓存失效（10s+后执行）：
 		* 访问：http://localhost:8080/report/test2
+
+#### 清楚缓存 ####
+清除缓存是为了保持数据的一致性，CRUD (Create 创建，Retrieve 读取，Update 更新，Delete 删除) 操作中，除了 R 具备幂等性，其他三个发生的时候都可能会造成缓存结果和数据库不一致。为了保证缓存数据的一致性，在进行 CUD 操作的时候我们需要对可能影响到的缓存进行更新或者清除
+
+```java
+    //清除缓存
+    @CacheEvict(value = Array("findUsers" ), allEntries = true)  
+    def saveUser(user: User): Int = {
+        userMapper.saveUser(user)
+    }
+```
+
+本示例用的都是 @CacheEvict 清除缓存。如果你的 CUD 能够返回 City 实例，也可以使用 @CachePut 更新缓存策略。笔者推荐能用 @CachePut 的地方就不要用 @CacheEvict，因为后者将所有相关方法的缓存都清理掉，比如上面三个方法中的任意一个被调用了的话，provinceCities 方法的所有缓存将被清除。
