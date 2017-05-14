@@ -77,9 +77,13 @@ Redis作为如今比较火热的NoSQL数据库，在数据的热数据存储和�
 	./bin/redis-server ./redis.conf
 
 #
-	26049:M 24 Mar 16:59:56.768 # You requested maxclients of 10000 requiring at least 10032 max file descriptors.
-	26049:M 24 Mar 16:59:56.768 # Redis can't set maximum open files to 10032 because of OS error: Operation not permitted.
-	26049:M 24 Mar 16:59:56.768 # Current maximum open files is 4096. maxclients has been reduced to 4064 to compensate for low ulimit. If you need higher maxclients increase 'ulimit -n'.
+	26049:M 24 Mar 16:59:56.768 # You requested maxclients of 10000 requiring at
+	least 10032 max file descriptors.
+	26049:M 24 Mar 16:59:56.768 # Redis can't set maximum open files to 10032
+	because of OS error: Operation not permitted.
+	26049:M 24 Mar 16:59:56.768 # Current maximum open files is 4096. maxclients
+	has been reduced to 4064 to compensate for low ulimit. If you need higher
+	maxclients increase 'ulimit -n'.
 	                _._                                                  
 	           _.-``__ ''-._                                             
 	      _.-``    `.  `_.  ''-._           Redis 3.0.7 (00000000/0) 64 bit
