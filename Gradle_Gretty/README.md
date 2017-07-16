@@ -31,7 +31,7 @@ gradle jetty* / gradle tomcat*
 		// serlvetContainer 支持 jetty7/8/9，tomcat7/8
 		// contextPath 设置根路径，默认为项目名称
 		port = 8080
-		serlvetContainer = 'tomcat8'
+		servletContainer = 'tomcat8'
 		contextPath = '/'
 	}
 
