@@ -106,3 +106,4 @@
 	html = HTMLUtils.HtmlClipboardData(html);
 	HTMLUtils.CopyHTMLToClipboard(html);
 ```
+具体的实现请看[https://github.com/scalad/MathML2MathTypeEquation](https://github.com/scalad/MathML2MathTypeEquation)
