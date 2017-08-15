@@ -105,5 +105,9 @@
 	string html = "<p><input type='text' name='test'>abc</p>";
 	html = HTMLUtils.HtmlClipboardData(html);
 	HTMLUtils.CopyHTMLToClipboard(html);
+	//then you can paste into word using WdPasteDataType.wdPasteHTML parameter
+    object dataType = Word.WdPasteDataType.wdPasteHTML;
+    newapp.Selection.PasteSpecial(ref nothing, ref nothing, ref nothing, ref nothing, ref dataType, ref nothing, ref nothing); ;
 ```
 具体的实现请看[https://github.com/scalad/MathML2MathTypeEquation](https://github.com/scalad/MathML2MathTypeEquation)
+
