@@ -4,9 +4,10 @@
 
 #### (1). 流的概念 ####
 流是对数据传输的总称或抽象，流的本质是数据传输，是数据的有序排列,根据数据传输特性将流抽象为各种类，方便更直观的进行数据操作。java语言采用流的机制来实现输入/输出
+
 ![](https://github.com/scalad/Note/blob/master/Java_IO/image/io_stream.jpg)
 
-在C++中，我们将数据从一个对象到另一个对象的流动抽象为"流"。Java继承C++的流机制，不过在具体实现上有别，Java中的"流"就是指把数据从一个对象移动到另一个对象的流动模式的抽象。(专业术语就是拿来装逼的ヽ(●´ε｀●)ノ)![](https://github.com/scalad/Note/blob/master/Java_IO/image/emoji1.png)
+在C++中，我们将数据从一个对象到另一个对象的流动抽象为"流"。Java继承C++的流机制，不过在具体实现上有别，Java中的"流"就是指把数据从一个对象移动到另一个对象的流动模式的抽象。(专业术语就是拿来装逼的![](https://github.com/scalad/Note/blob/master/Java_IO/image/emoji1.png))
 
 #### (2). IO 流的分类 ####
 * 根据处理数据类型的不同分为：字符流和字节流
