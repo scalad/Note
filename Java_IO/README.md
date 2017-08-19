@@ -7,8 +7,8 @@
 
 ![](https://github.com/scalad/Note/blob/master/Java_IO/image/io_stream.jpg)
 
-在C++中，我们将数据从一个对象到另一个对象的流动抽象为"流"。Java继承C++的流机制，不过在具体实现上有别，
-<br>Java中的"流"就是指把数据从一个对象移动到另一个对象的流动模式的抽象。(专业术语就是拿来装逼的)![](https://github.com/scalad/Note/blob/master/Java_IO/image/emoji1.png)
+在C++中，我们将数据从一个对象到另一个对象的流动抽象为"流"。<br>
+ava中的"流"就是指把数据从一个对象移动到另一个对象的流动模式的抽象。(专业术语就是拿来装逼的)![](https://github.com/scalad/Note/blob/master/Java_IO/image/emoji1.png)
 
 James Gosling的Java流模式图与水流模式图概念映射。数据源（data source）即水库，数据目的地(data destination)就是脸盆，数据（data）就是水，流（stream）实例化就是在管子中流动的水流。输入流（input stream）就是用水泵从水库中抽出来要到水管中的水，输出流（output stream）经过水龙头将要达到脸盆中的水，计算机内存（memory）就是上图中的水流管道，关闭输入流（close input stream）就是关闭水泵开关，关闭输出流（close output stream）就是关闭关闭水龙头开关.
 
