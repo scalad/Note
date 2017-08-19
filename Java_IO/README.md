@@ -11,7 +11,7 @@
 
 James Gosling的Java流模式图与水流模式图概念映射。数据源（data source）即水库，数据目的地(data destination)就是脸盆，数据（data）就是水，流（stream）实例化就是在管子中流动的水流。输入流（input stream）就是用水泵从水库中抽出来要到水管中的水，输出流（output stream）经过水龙头将要达到脸盆中的水，计算机内存（memory）就是上图中的水流管道，关闭输入流（close input stream）就是关闭水泵开关，关闭输出流（close output stream）就是关闭关闭水龙头开关.
 
-![](https://github.com/scalad/Note/blob/master/Java_IO/image/io_stream1.png)![](https://github.com/scalad/Note/blob/master/Java_IO/image/io_stream2.png)
+![](https://github.com/scalad/Note/blob/master/Java_IO/image/io_stream1.png)
 
 #### (2). IO 流的分类 ####
 * 根据处理数据类型的不同分为：字符流和字节流
