@@ -14,7 +14,7 @@ James Gosling的Java流模式图与水流模式图概念映射。数据源（dat
 ![](https://github.com/scalad/Note/blob/master/Java_IO/image/io_stream1.png)
 
 #### (2). IO 流的分类 ####
-* 根据处理数据类型的不同分为：字符流和字节流
+* 根据处理数据类型的不同分为：[(3). 字符流和字节流的区别](#字符流和字节流的区别)
 * 根据数据流向不同分为：[输入流和输出流](https://github.com/scalad/Note/tree/master/Java_IO/inputOutputStream)
 * 根据流的功能来分：[节点流（又称低级流）、过滤流（又称高级流、处理流、包装流）](https://github.com/scalad/Note/tree/master/Java_IO/functionStream)
 
