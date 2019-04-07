@@ -1,9 +1,0 @@
-处方跟踪系统(张三，123456)
-http://120.27.114.229/PrescriptionTrackSystem/login.html
-
-
-在线商城（还未搭建右键服务器）
-http://120.27.114.229/Shop/
-
-基于WebSocket的在线聊天室
-http://120.27.114.229/WebSocketChat/index.html
